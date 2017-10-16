@@ -2,43 +2,31 @@ package darko;
 
 import java.util.Scanner;
 
-public class ProblemTwo {
+public class problemTwoo {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Input a number for the height of the bow tie which is odd positive number that is greater than or equal to 5");
 		int height = sc.nextInt();
-		int width = height * 2;
 		
-		for (int i=1; i <= ((height / 2) + 1); )
+		for (int i = 1; i <= height + 1; i+=2)
 		{
-			System.out.println("*");
-			for (int i1 = 1; i1 <= i1 ;)
-			{
-				
-			}
-			i++;
-			
-			if (i == 2)
+			for (int j = i; j > 0; j-- )
 			{
 				System.out.print("*");
 			}
-			else if (i == 3)
+			for (int k = height * 2 - i*2; k > 0; k--)
 			{
-				System.out.print("**");
+				System.out.print(" ");
 			}
-			else if (i == 4)
+			for (int j = i; j > 0; j-- )
 			{
-				System.out.print("***");
+				System.out.print("*");
 			}
+			System.out.println("");
 		}
 		
-		//For the width
-		for (int i = 1; i <= (width); i++ )
-		{
-			System.out.print("*");
-		}
 	}
 
 }
