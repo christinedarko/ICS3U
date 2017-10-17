@@ -1,13 +1,9 @@
 package darko;
 
-import java.util.Scanner;
-
 public class ArrayPracticeThree {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
-		Scanner sc = new Scanner(System.in);
 		int [] total = new int[11];
 		int dieOne;
 		int dieTwo;
