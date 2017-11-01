@@ -16,11 +16,14 @@ public class DealOrNoDeal {
 		System.out.println("How many cases have been opened so far?");
 		int n = sc.nextInt();
 		System.out.println("Indicate which amounts were eliminated by writing 1 for $100, 2 for $500, 3 for $1000 and so on until 10 for $1000000. Between each amount press the enter key");
+		
+		int [] amnts = {100, 500, 1000, 5000, 10000, 25000, 50000, 100000, 500000, 1000000};
+		
 		for (int i = 0; i < n; i++)
 		{
 			
 		}
-		int [] amnts = {100, 500, 1000, 5000, 10000, 25000, 50000, 100000, 500000, 1000000};
+		
 		
 		
 		

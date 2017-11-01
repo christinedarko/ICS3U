@@ -2,6 +2,9 @@ package darko;
 
 import java.util.Scanner;
 /**
+ * Program Name: Magic Square
+ * Date: October 23, 2017
+ * Description: This program asks a user to make a square of numbers. If each row and column are equal to each other, the square is magic.
  * @author 324714468
  *
  */
@@ -11,21 +14,31 @@ public class MagicSquare {
 	public static void main(String[] args) {
 	
 		Scanner sc = new Scanner(System.in);
-		int[][] square = new int [4][4];
-		System.out.println("Enter 16 numbers you think will make a majic square");
+		System.out.println("How long and wide do you want the square to be?");
+		int n = sc.nextInt();
+		int[][] square = new int [n][n];
+		int amnt = (int)(Math.pow(n, 2));
+		System.out.println("Enter " +  amnt + " numbers you think will make a majic square. Use the space bar to seperate all the numbers. I will tell you if it is magic or not.");
 		for (int i = 0; i < square.length; i++)
 		{
 			for (int j = 0; j < square[i].length; j++)
 			{
-				System.out.print("next");
 				square [i][j] = sc.nextInt();
 			}
 		}
 		
-		// To add up all the values 
-		int total = square[0][0] + square[0][1] + square[0][2] + square[0][3];
+		// To add up the rows
+		int total = 0;
+		for (int i = 0; i < square.length; i++)
+		{
+			for (int j = 0; j < square.length; j++)
+			{
+				total = total + square[i][j];
+			}
+		}
+		//to add up the columns
 		int sum = 0;
-		for (int i = 0; i < square.length; i ++)
+		for (int i = 0; i < 1; i ++)
 		{
 			for (int j = 0; j < square[i].length; j++)
 			{
@@ -33,25 +46,16 @@ public class MagicSquare {
 			}
 			
 		}
-		
-		
-		int rowZero = square[0][0] + square[0][1] + square[0][2] + square[0][3];
-		int rowOne = square[1][0] + square[1][1] + square[1][2] + square[1][3];
-		int rowTwo = square[2][0] + square[2][1] + square[2][2] + square[2][3];
-		int rowThree = square[3][0] + square[3][1] + square[3][2] + square[3][3];
-		
-		int cZero = square[0][0] + square[1][0] + square[2][0] + square[3][0];
-		int cOne = square[0][1] + square[1][1] + square[2][1] + square[3][1];
-		int cTwo = square[0][2] + square[1][2] + square[2][2] + square[3][2];
-		int cThree = square[0][3] + square[1][3] + square[2][3] + square[3][3];
-		if (rowZero == rowOne && rowZero == rowTwo && rowZero == rowThree && cZero == cOne && cZero == cTwo && cZero == cThree)
+	
+		if (sum * n == total)
 		{
-			System.out.println("This is a majic square");
+			System.out.println("magic");
 		}
-		else
+		else 
 		{
-			System.out.print("This is not a majic square");
+			System.out.println("not magic");
 		}
+		
 	}
-
+	
 }

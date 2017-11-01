@@ -10,8 +10,10 @@ public class problemTwoo {
 		System.out.print("Input a number for the height of the bow tie which is odd positive number that is greater than or equal to 5");
 		int height = sc.nextInt();
 		
+		// Prints half of the bow tie
 		for (int i = 1; i <= height + 1; i+=2)
 		{
+			//Prints left side of the bow tie
 			for (int j = i; j > 0; j-- )
 			{
 				System.out.print("*");
@@ -20,7 +22,27 @@ public class problemTwoo {
 			{
 				System.out.print(" ");
 			}
+			//Prints right side of the bow tie
 			for (int j = i; j > 0; j-- )
+			{
+				System.out.print("*");
+			}
+			System.out.println("");
+		}
+		
+
+		
+		for (int i = height; i > 1 ; i-=2)
+		{
+			for(int j = i-2 ; j > 0; j--)
+			{
+				System.out.print("*");
+			}
+			for (int k =4; k< height * 2 - i *2; k+=4)
+			{
+				System.out.print(" ");
+			}
+			for(int j = i-2 ; j > 0; j--)
 			{
 				System.out.print("*");
 			}
