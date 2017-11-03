@@ -38,7 +38,7 @@ public class problemTwoo {
 			{
 				System.out.print("*");
 			}
-			for (int k =4; k< height * 2 - i *2; k+=4)
+			for (int k = height*2 - (2*(i -2)) ; k > 0; k --)
 			{
 				System.out.print(" ");
 			}

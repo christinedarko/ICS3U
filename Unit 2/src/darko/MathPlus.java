@@ -23,7 +23,7 @@ public class MathPlus {
 			int one = sc.nextInt();
 			int two = sc.nextInt();
 			System.out.println (addition (one, two));
-			System.out.println(factorial(one));
+			System.out.println(numberOfFactors(one));
 		}
 		else if (response.equalsIgnoreCase("decimals"))
 		{
@@ -124,7 +124,9 @@ public class MathPlus {
 			{
 				sumArray [i] = sc.nextInt();
 			}
-			System.out.println (sumArray (sumArray));
+			//CJHECK MTHISSS TODAYYYYY TO SEE IF IT WORKSSSSSSSS
+			// LALALALAlALALLALALALALALALLALALALLALALALALALLA
+			System.out.println (min (sumArray));
 		}
 		else if (response5 == 2)
 		{
@@ -347,11 +349,55 @@ public class MathPlus {
 	}
 	public static int numberOfFactors (int num1)
 	{
-		for (int i = 0; i <= num1; i++)
+		int factor = 0;
+		int counter = 0;
+		for (int i = 1; i <= num1; i++)
 		{
-			
+			factor = num1 % i;
+			if (factor == 0)
+			{
+				counter++;
+			}
 		}
-		return num1;
+		return counter;
+	}
+	public static int  min (int num[])
+	{
+		int min = num[0];
+		for (int i = 0; i < num.length; i++ )
+		{
+			if ( min > num [i])
+			{
+				min = num[i];
+			}
+			min = i;
+		}
+		return min;
+	}
+	public static double min (double num [])
+	{
+		double min = (int)(num[0]);
+		for (int i = 0; i < num.length; i++ )
+		{
+			if ( min > num [i])
+			{
+				min = num[i];
+			}
+			min = i;
+		}
+		return min;
+	}
+	public static long min (long num [])
+	{
+		long min = num[0];
+		for (int i = 0; i < num.length; i++ )
+		{
+			if ( min > num [i])
+			{
+			min = num[i];
+			return i;
+			}
+		}
 	}
 }
 
