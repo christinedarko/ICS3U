@@ -1,13 +1,21 @@
 package darko;
 
+/**
+ * Program Name: ArrayPracticeThree
+ * Description: This program rolls two die 10000 times and outputs how many times the totals of the two die together were rolled.
+ * @author Christine Darko
+ *
+ */
+
 public class ArrayPracticeThree {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 		int [] total = new int[11];
 		int dieOne;
 		int dieTwo;
 		
+		// Calculates the amount of rolls for each number on the die
 		for (int i = 0; i < 10000; i++)
 		{
 			dieOne = (int)(Math.random()*6)+1;
@@ -60,6 +68,7 @@ public class ArrayPracticeThree {
 		}
 		System.out.println("Totals\t\t\t\tNumber of Rolls");
 		
+		//Prints out the totals and the number or rolls in columns
 		int j = 2;
 		for (int i = 0 ; i < 11; i++)
 		{ 

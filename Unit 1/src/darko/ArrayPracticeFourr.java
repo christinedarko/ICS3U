@@ -4,7 +4,7 @@ import java.util.Scanner;
 /**
  * Program Name: ArrayProblemFourr
  * Description: This program plays a guessing game with the user.
- * @author 324714468
+ * @author Christine Darko
  *
  */
 public class ArrayPracticeFourr {

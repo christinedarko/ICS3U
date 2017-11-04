@@ -7,6 +7,7 @@ import java.util.Scanner;
 /**
  * Program Name: ProblemSeven
  * Date: September 26, 2017
+ * Description: This program asks a user for a number between 1 and 10 and outputs how many ways you can show that number with your fingers
  * @author Christine Darko
  */
 public class ProblemSeven {

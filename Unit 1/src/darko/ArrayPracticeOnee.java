@@ -1,6 +1,14 @@
 package darko;
+
  import java.util.Scanner;
-public class ArrayPracticeOnee {
+
+ /**
+  * Program Name: ArrayPracticeOnee
+  * Description: This program as the user for a list names. Then outputs the names in order forwards and backwards.
+  * @author Christine Darko
+  *
+  */
+ public class ArrayPracticeOnee {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

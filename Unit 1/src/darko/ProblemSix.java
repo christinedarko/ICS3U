@@ -2,6 +2,8 @@ package darko;
 
 import java.util.Scanner;
 /**
+ * Program Name: ProblemSix
+ * Description: This program finds the 1 to 3 sum of three numbers plus a constant number
  * @author 324714468
  *
  */

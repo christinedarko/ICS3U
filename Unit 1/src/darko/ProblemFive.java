@@ -2,6 +2,8 @@ package darko;
 
 import java.util.Scanner;
 /**
+ * Program Name: ProblemFive
+ * Description: This program asks the user for 3 weights and checks for the second largest weight to output to the user the weight of Mama Bear's bowl
  * @author 324714468
  *
  */
@@ -17,6 +19,7 @@ public class ProblemFive {
 		System.out.println("What is the weight of the third bowl?");
 		int bowlThree = sc.nextInt();
 		
+		//Determines and outputs the weight of Mama Bear's bowl
 		if (bowlOne > bowlTwo && bowlOne < bowlThree || bowlOne > bowlThree && bowlOne < bowlTwo)
 		{
 			System.out.println("Mama Bear's bowl weighs " + bowlOne + " pounds");

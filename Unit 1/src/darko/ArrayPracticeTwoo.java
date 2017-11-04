@@ -20,6 +20,7 @@ public class ArrayPracticeTwoo {
 		
 		String [] verse = {"clap your hands", "stomp your feet", "say hooray", "cross your arms", "snap your fingers", "touch your toes", "raise the roof", "kiss your teeth", "tap your neighbour", "leave the room", };
 		
+		// Outputs the song verses
 		for (int i = 0; i < 10; i++)
 		{
 			System.out.println("If your happy and you know it " + verse [i]);
