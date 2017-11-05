@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * Program Name: Problem Three
  * Date: November 4, 2017
- * Description: 
+ * Description: This program prints out a trident with information given from the user (height of the tines, spacing between the tines and the height of the handle).
  * @author Christine Darko
  *
  */
@@ -13,9 +13,10 @@ import java.util.Scanner;
 public class ProblemThree {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 		
 		Scanner sc = new Scanner(System.in);
+		
 		System.out.println("How tall would you like the tines to be?");
 		int tines = sc.nextInt();
 		System.out.println("What would you like the spacing of the tines to be?");
