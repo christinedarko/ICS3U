@@ -522,18 +522,27 @@ public class MathPlus {
 	{
 		double[] list = Arrays.copyOf(nums, nums.length);
 		Arrays.sort(list);
+		int counter = 1;
+		double modeCheck = 0;
 		double mode = 0;
-		for (int i= 0; i < list.length; i++)
+		for (int i= 0; i < list.length - 1; i++)
 		{
-			for (int j = 0; j < list.length; j++)
+			counter = 1;
+			for (int j = i+1; j < list.length; j++)
 			{
 				if (list[i] == list [j])
 				{
-					mode = list[j];
+					counter++;
 				}
+				
 			}
-			
+			if (counter > modeCheck)
+			{
+				modeCheck = counter;
+				mode = list[i];
+			}
 		}
+		return mode;
 	}
 	public static double [] quadratic (double a, double b, double c) throws ArithmeticException
 	{
