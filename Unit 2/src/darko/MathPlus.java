@@ -136,7 +136,7 @@ public class MathPlus {
 			}
 			//CJHECK MTHISSS TODAYYYYY TO SEE IF IT WORKSSSSSSSS
 			// LALALALAlALALLALALALALALALLALALALLALALALALALLA
-			System.out.println (min (sumArray));
+			System.out.println (sum (sumArray));
 		}
 		else if (response5 == 2)
 		{
@@ -162,7 +162,7 @@ public class MathPlus {
 
 	}
 	/**
-	 * 
+	 * This method finds the sum of the first and second operand
 	 * @param num1
 	 * first operand
 	 * @param num2
@@ -176,7 +176,7 @@ public class MathPlus {
 	}
 	
 	/**
-	 * 
+	 * This method finds the sum of the first and second operand
 	 * @param num1
 	 * first operand
 	 * @param num2
@@ -190,7 +190,7 @@ public class MathPlus {
 	}
 	
 	/**
-	 * 
+	 * This method finds the sum of the first and second operand
 	 * @param num1
 	 * first operand
 	 * @param num2
@@ -204,7 +204,7 @@ public class MathPlus {
 	}
 	
 	/**
-	 * 
+	 * This method finds the difference of the first and second operand
 	 * @param num1
 	 * first operand
 	 * @param num2
@@ -218,7 +218,7 @@ public class MathPlus {
 	}
 	
 	/**
-	 * 
+	 * This method finds the difference of the first and second operand
 	 * @param num1
 	 * first operand
 	 * @param num2
@@ -232,7 +232,7 @@ public class MathPlus {
 	}
 	
 	/**
-	 * 
+	 * This method finds the difference of the first and second operand
 	 * @param num1
 	 * first operand
 	 * @param num2
@@ -246,7 +246,7 @@ public class MathPlus {
 	}
 	
 	/**
-	 * 
+	 * This method finds the product of the first and second operand
 	 * @param num1
 	 * first operand
 	 * @param num2
@@ -260,7 +260,7 @@ public class MathPlus {
 	}
 	
 	/**
-	 * 
+	 * This method finds the product of the first and second operand
 	 * @param num1
 	 * first operand
 	 * @param num2
@@ -274,7 +274,7 @@ public class MathPlus {
 	}
 	
 	/**
-	 * 
+	 * This method finds the product of the first and second operand
 	 * @param num1
 	 * first operand
 	 * @param num2
@@ -288,7 +288,7 @@ public class MathPlus {
 	}
 	
 	/**
-	 * 
+	 * This method divides the first operand  by the second
 	 * @param num1
 	 * first operand
 	 * @param num2
@@ -302,7 +302,7 @@ public class MathPlus {
 	}
 	
 	/**
-	 * 
+	 * This method divides the first operand  by the second
 	 * @param num1
 	 * first operand
 	 * @param num2
@@ -316,7 +316,7 @@ public class MathPlus {
 	}
 	
 	/**
-	 * 
+	 * This method divides the first operand  by the second
 	 * @param num1
 	 * first operand
 	 * @param num2
@@ -328,13 +328,29 @@ public class MathPlus {
 		
 		return num1/num2;
 	}
+	
+	/**
+	 * This method finds the sum of the values given in an array
+	 * @param num
+	 * array filled with integer numbers
+	 * @return
+	 * the sum of all the numbers
+	 */
 	public static int sum (int[] num) {
 		for (int i = 0; i < num.length; i++)
 		{
-			 num [0] = num[0] + num[i];
+			 num [0] += num[i];
 		}
 			return num[0];
 	}
+	
+	/**
+	 * This method finds the sum of the values given in an array
+	 * @param num
+	 * array filled with double values
+	 * @return
+	 * the sum of all the values
+	 */
 	public static double sum (double [] num) {
 		for (int i = 0; i < num.length; i++)
 		{
@@ -342,13 +358,29 @@ public class MathPlus {
 		}
 		return num[0];
 	}
+	
+	/**
+	 * This method finds the sum of the values given in an array
+	 * @param num
+	 * array filled with long numbers
+	 * @return
+	 * the sum of all the values
+	 */
 	public static long sum (long [] num) {
 		for (int i = 0; i < num.length; i++) {
 			num [0] = num[0] + num[i];
 		}
 		return num[0];
 	}
-	public static int factorial (int num1) {
+	
+	/**
+	 * This method multiplies the number given by every integer number below it not including zero
+	 * @param num1
+	 * an integer number greater than zero
+	 * @return
+	 * the product of every integer number below the given value 
+	 */
+	public static long factorial (int num1) {
 		int factorial=num1;
 		for (int i = 1; i < num1; i ++)
 		{
@@ -357,6 +389,14 @@ public class MathPlus {
 		return factorial;		
 		
 	}
+	
+	/**
+	 * This method finds the amount of factors the given number has
+	 * @param num1
+	 * integer number that is being tested
+	 * @return
+	 * the amount of factors the given number has
+	 */
 	public static int numOfFactors (int num1)
 	{
 		int factor = 0;
@@ -371,6 +411,14 @@ public class MathPlus {
 		}
 		return counter;
 	}
+	
+	/**
+	 * This method finds the lowest number in a array
+	 * @param num
+	 * The array that contains a list of numbers
+	 * @return
+	 * the spot number in the array where the minimum number lies
+	 */
 	public static int  min (int num[])
 	{
 		int min = num[0];
@@ -384,6 +432,14 @@ public class MathPlus {
 		}
 		return min;
 	}
+	
+	/**
+	 * This method finds the lowest number in a array
+	 * @param num
+	 * The array that contains a list of numbers
+	 * @return
+	 * the spot number in the array where the minimum number lies
+	 */
 	public static double min (double num [])
 	{
 		double min = (int)(num[0]);
@@ -397,6 +453,14 @@ public class MathPlus {
 		}
 		return min;
 	}
+	
+	/**
+	 * This method finds the lowest number in a array
+	 * @param num
+	 * The array that contains a list of numbers
+	 * @return
+	 * the spot number in the array where the minimum number lies
+	 */
 	public static long min (long num [])
 	{
 		long min = num[0];
@@ -410,6 +474,14 @@ public class MathPlus {
 		}
 		return min;
 	}
+	
+	/**
+	 * This method finds the largest number in a array
+	 * @param num
+	 * The array that contains a list of numbers
+	 * @return
+	 * the spot number in the array where the maximum number lies
+	 */
 	public static int max (int num[])
 	{
 		int max = num[0];
@@ -423,6 +495,14 @@ public class MathPlus {
 		}
 		return max;
 	}
+	
+	/**
+	 * This method finds the largest number in a array
+	 * @param num
+	 * The array that contains a list of numbers
+	 * @return
+	 * the spot number in the array where the maximum number lies
+	 */
 	public static double max (double num[])
 	{
 		double max = num[0];
@@ -436,6 +516,14 @@ public class MathPlus {
 		}
 		return max;
 	}
+	
+	/**
+	 * This method finds the largest number in a array
+	 * @param num
+	 * The array that contains a list of numbers
+	 * @return
+	 * the spot number in the array where the maximum number lies
+	 */
 	public static long max (long num[] )
 	{
 		long max = num[0];
@@ -450,12 +538,27 @@ public class MathPlus {
 		return max;
 	}
 	
+	/**
+	 * This method finds the hypotenuse of of a triangle
+	 * @param num1
+	 * the height of the triangle
+	 * @param num2
+	 * the base of the triangle
+	 * @return
+	 */
 	public static double hypotenuse (double num1, double num2)
 	{
 		double c = Math.sqrt(Math.pow(num1, 2) + Math.pow(num2, 2));
 		return c;
 	}
 	
+	/**
+	 * This method finds the factors of the number given
+	 * @param num1
+	 * the number that is being tested
+	 * @return
+	 * a list of factors 
+	 */
 	public static int [] factors (int num1)
 	{
 		int numOfFactors = (numOfFactors (num1));
@@ -473,6 +576,14 @@ public class MathPlus {
 		}
 		return factors;
 	}
+	
+	/**
+	 * This method finds the factors of the number given
+	 * @param num1
+	 * the number that is being tested
+	 * @return
+	 * a list of factors in a array list
+	 */
 	public static ArrayList<Integer> listOfFactors (int num1)
 	{
 		
@@ -492,6 +603,14 @@ public class MathPlus {
 		}
 		return factors;
 	}
+	
+	/**
+	 * This method finds the average of all the numbers in the array
+	 * @param nums
+	 * all the operands
+	 * @return
+	 * the average of all the numbers in the array
+	 */
 	public static double mean (double [] nums )
 	{
 		double total = 0;
@@ -502,6 +621,14 @@ public class MathPlus {
 		total /= nums.length;
 		return total;
 	}
+	
+	/**
+	 * This method finds the middle number in an ascending list of numbers. If there is more than one, it finds the average of the two
+	 * @param nums
+	 * list of numbers being tested
+	 * @return
+	 * returns the median
+	 */
 	public static double median (double [] nums)
 	{
 		double[] ascending = Arrays.copyOf(nums, nums.length);
@@ -518,6 +645,14 @@ public class MathPlus {
 		}
 		return median;
 	}
+	
+	/**
+	 * This method finds the number in a list that repeats the most
+	 * @param nums
+	 * the list of numbers being tested
+	 * @return
+	 * returns the mode
+	 */
 	public static double mode (double [] nums)
 	{
 		double[] list = Arrays.copyOf(nums, nums.length);
@@ -542,8 +677,28 @@ public class MathPlus {
 				mode = list[i];
 			}
 		}
-		return mode;
+		if (modeCheck > 1) 
+		{
+			return mode;
+		}
+		else
+		{
+			return 0;
+		}
 	}
+	
+	/**
+	 * This method finds the roots of a quadratic equation arranged in standard form
+	 * @param a
+	 * the a value 
+	 * @param b
+	 * the b value
+	 * @param c
+	 * the c value
+	 * @return
+	 * returns the root(s) of the of the equation, if there aren't any it will return a message 
+	 * @throws ArithmeticException
+	 */
 	public static double [] quadratic (double a, double b, double c) throws ArithmeticException
 	{
 		double discriminant = b*b - 4*a*c;
@@ -566,6 +721,34 @@ public class MathPlus {
 			throw new ArithmeticException("No Real Roots");
 		}
 	}
+	
+	/**
+	 * This method finds the permutation using the numbers given by the user
+	 * @param n
+	 *  the amount of the numbers the user can choose from
+	 * @param r
+	 *  the number the user has chosen
+	 * @return
+	 */
+	public static long permut (int n, int r)
+	{
+		long permutation = factorial(n)/factorial(n-r);
+		return permutation;
+	}
+	
+	/**This method finds the combination using the numbers given by the user
+	 * @param n
+	 *  the amount of the numbers the user can choose from
+	 * @param r
+	 *  the number the user has chosen
+	 * @return
+	 */
+	public static long comb (int n, int r)
+	{
+		long combination = factorial(n)/(factorial(n-r) * factorial(r));
+		return combination;
+	}
+	
 }
 
 
