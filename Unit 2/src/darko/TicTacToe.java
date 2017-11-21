@@ -42,37 +42,48 @@ public class TicTacToe {
 		{
 			System.out.println("Player 1 choose a spot");
 			ticTacToe [sc.nextInt() - 1][sc.nextInt() - 1] =  player1;
+			boolean winPlayer1 = checkWinPlayer1(ticTacToe);
+			if (winPlayer1 == true)
+			{
+				i = 9;
+				System.out.println("PLAYER ONE WINS!!!!!!");
+			}
 			System.out.println("Player 2 choose a spot");
 			ticTacToe [sc.nextInt() - 1][sc.nextInt() - 1] =  player2;
 			
 		}
 	}
 	
-	public static boolean checkPlayer1 (char [][] toe )
+	public static boolean checkWinPlayer1 (char [][] toe )
 	{
 		int counter1 = 1;
 		int counter2 = 1;
 		int counter3 = 1;
 		int counter4 = 1;
 		char player1 = 'X';
-		boolean win = false;
+		boolean winX = false;
 		//for rows
 		for (int i = 0; i < toe.length; i++)
 		{
 			counter1 = 1;
-			for (int j = 0; j < toe.length; j++)
+			for (int j = 0; j < toe.length- 1; j++)
 			{
 				//checks for player one input
-				if (toe [i][j] == 'X')
+				if (toe [i][j] == player1)
 				{
 					//compares spot below to each other
 					if (toe [i][j] == toe [i][j+1])
 					{
 						counter1++;
+						if (counter1 == 3)
+						{
+							winX = true;
+							return winX;
+						}
 					}
 				}
 				else 
-					j =3;
+					j = toe.length;
 			}
 		}
 		//for columns
@@ -81,16 +92,81 @@ public class TicTacToe {
 			counter2 = 1;
 			for (int j = 0; j < toe.length; j++)
 			{
-				if (toe[i][j] == 'X' )
+				if (toe[i][j] == player1 )
 				{
 					if (toe [i][j] == toe [i+1][j])
 					{
 						counter2++;
+						if (counter2 == 3)
+						{
+							winX = true;
+							return winX;
+						}
 					}
 				}
+				else
+				{
+					j = toe.length;
+				}
+					
 			}
 		}
-		return win;
+		// for diagonal to right
+		for (int i = 0; i < toe.length - 1;)
+		{
+			counter3 = 1;
+			for (int j = 0; j < toe.length- 1; j++, i++)
+			{
+				//checks for player one input
+				if (toe [i][j] == 'X')
+				{
+					//compares spot below to each other
+					if (toe [i][j] == toe [i+1][j+1])
+					{
+						counter3++;
+						if (counter3 == 3)
+						{
+							winX = true;
+							return winX;
+						}
+					}
+				}
+				else 
+				{
+					j = toe.length;
+				}
+
+			}
+			return winX;
+		}
+		for (int i = toe.length - 1; i >= 0;)
+		{
+			counter4 = 1;
+			for (int j = toe.length- 1; j >= 0; j--, i--)
+			{
+				//checks for player one input
+				if (toe [i][j] == 'X')
+				{
+					//compares spot below to each other
+					if (toe [i][j] == toe [i-1][j-1])
+					{
+						counter4++;
+						if (counter4 == 3)
+						{
+							winX = true;
+							return winX;
+						}
+					}
+				}
+				else 
+				{
+					j = toe.length;
+				}
+
+			}
+			
+		}
+		return winX;
 	}
 
 }
