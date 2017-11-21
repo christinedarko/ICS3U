@@ -45,8 +45,8 @@ public class TicTacToe {
 			boolean winPlayer1 = checkWinPlayer1(ticTacToe);
 			if (winPlayer1 == true)
 			{
-				i = 9;
 				System.out.println("PLAYER ONE WINS!!!!!!");
+				i = 9;
 			}
 			System.out.println("Player 2 choose a spot");
 			ticTacToe [sc.nextInt() - 1][sc.nextInt() - 1] =  player2;
