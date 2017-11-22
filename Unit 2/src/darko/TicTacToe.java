@@ -24,6 +24,13 @@ public class TicTacToe {
 		char player1 = 'X';
 		char player2 = 'o';
 		char [][] ticTacToe = new char[3][3];
+		for (int i = 0; i < ticTacToe.length; i ++)
+		{
+			for (int j = 0; j < ticTacToe.length; j++)
+			{
+				ticTacToe [i][j] = ' ';
+			}
+		}
 		System.out.println("Since we are playing this game through java, we are going to play this differently.");
 		Thread.sleep(2000);
 		System.out.println("You will be playing on a 3x3 grid.");
@@ -38,30 +45,53 @@ public class TicTacToe {
 		Thread.sleep(2000);
 		System.out.println("Press enter to begin");
 		String space = sc.nextLine();
+		
+		int row = 0;
+		int col = 0;
+		
 		for (int i = 0; i < 9; i++)
 		{
 			System.out.println("Player 1 choose a spot");
-			ticTacToe [sc.nextInt() - 1][sc.nextInt() - 1] =  player1;
-			boolean winPlayer1 = checkWinPlayer1(ticTacToe);
-			if (winPlayer1 == true)
+			row = sc.nextInt() - 1;
+			col = sc.nextInt() - 1;
+			boolean emptySpace = openSpace(ticTacToe, row, col);
+			if (emptySpace == false)
 			{
-				System.out.println("PLAYER ONE WINS!!!!!!");
-				i = 9;
+				System.out.println("Choose a new spot player 1");
 			}
-			System.out.println("Player 2 choose a spot");
-			ticTacToe [sc.nextInt() - 1][sc.nextInt() - 1] =  player2;
-			
+			else
+			{
+				ticTacToe [row][col] =  player1;
+				boolean winPlayer1 = checkWin(ticTacToe, row, col);
+				if (winPlayer1 == true)
+				{
+					System.out.println("PLAYER ONE WINS!!!!!!");
+					i = 9;
+				}
+				System.out.println("Player 2 choose a spot");
+				row = sc.nextInt() - 1;
+				col = sc.nextInt() - 1;
+				emptySpace = openSpace(ticTacToe, row, col);
+				if (emptySpace == false)
+				{
+					System.out.println("Choose a new spot player 1");
+				}
+				else
+				{
+
+				}
+			}
 		}
 	}
 	
-	public static boolean checkWinPlayer1 (char [][] toe )
+	public static boolean checkWin (char [][] toe, int row, int col)
 	{
 		int counter1 = 1;
 		int counter2 = 1;
 		int counter3 = 1;
 		int counter4 = 1;
-		char player1 = 'X';
-		boolean winX = false;
+		char player = toe [row][col];
+		boolean win = false;
 		//for rows
 		for (int i = 0; i < toe.length; i++)
 		{
@@ -69,7 +99,7 @@ public class TicTacToe {
 			for (int j = 0; j < toe.length- 1; j++)
 			{
 				//checks for player one input
-				if (toe [i][j] == player1)
+				if (toe [i][j] == player)
 				{
 					//compares spot below to each other
 					if (toe [i][j] == toe [i][j+1])
@@ -77,8 +107,8 @@ public class TicTacToe {
 						counter1++;
 						if (counter1 == 3)
 						{
-							winX = true;
-							return winX;
+							win = true;
+							return win;
 						}
 					}
 				}
@@ -92,15 +122,15 @@ public class TicTacToe {
 			counter2 = 1;
 			for (int j = 0; j < toe.length; j++)
 			{
-				if (toe[i][j] == player1 )
+				if (toe[i][j] == player )
 				{
 					if (toe [i][j] == toe [i+1][j])
 					{
 						counter2++;
 						if (counter2 == 3)
 						{
-							winX = true;
-							return winX;
+							win = true;
+							return win;
 						}
 					}
 				}
@@ -118,7 +148,7 @@ public class TicTacToe {
 			for (int j = 0; j < toe.length- 1; j++, i++)
 			{
 				//checks for player one input
-				if (toe [i][j] == 'X')
+				if (toe [i][j] == player)
 				{
 					//compares spot below to each other
 					if (toe [i][j] == toe [i+1][j+1])
@@ -126,8 +156,8 @@ public class TicTacToe {
 						counter3++;
 						if (counter3 == 3)
 						{
-							winX = true;
-							return winX;
+							win = true;
+							return win;
 						}
 					}
 				}
@@ -137,7 +167,7 @@ public class TicTacToe {
 				}
 
 			}
-			return winX;
+			return win;
 		}
 		for (int i = toe.length - 1; i >= 0;)
 		{
@@ -153,8 +183,8 @@ public class TicTacToe {
 						counter4++;
 						if (counter4 == 3)
 						{
-							winX = true;
-							return winX;
+							win = true;
+							return win;
 						}
 					}
 				}
@@ -166,7 +196,20 @@ public class TicTacToe {
 			}
 			
 		}
-		return winX;
+		return win;
 	}
-
+	
+	public static boolean openSpace (char [][] toe, int row, int col)
+	{
+		boolean answer = false;
+		if (toe [row][col] != ' ')
+		{
+			return answer;
+		}
+		else
+		{
+			answer = true;
+			return answer;
+		}
+	}
 }
