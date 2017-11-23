@@ -18,9 +18,8 @@ public class TicTacToe {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("WELCOME TO TIC TAC TOE");
 		Thread.sleep(1000);
-		System.out.println("\n");
-		System.out.print("This game requires two players. Press 1 if you have someone to play with or press 2 to play with the computer.");
-		//Fix working with the computer
+		System.out.print("\n");
+		System.out.println("This game requires two players.");
 		char player1 = 'X';
 		char player2 = 'o';
 		char [][] ticTacToe = new char[3][3];
@@ -57,28 +56,39 @@ public class TicTacToe {
 			boolean emptySpace = openSpace(ticTacToe, row, col);
 			if (emptySpace == false)
 			{
-				System.out.println("Choose a new spot player 1");
+				System.out.println("That spot's already filled");
 			}
 			else
 			{
 				ticTacToe [row][col] =  player1;
-				boolean winPlayer1 = checkWin(ticTacToe, row, col);
-				if (winPlayer1 == true)
+				boolean win = checkWin(ticTacToe, row, col);
+				if (win == true)
 				{
 					System.out.println("PLAYER ONE WINS!!!!!!");
-					i = 9;
+					break;
 				}
 				System.out.println("Player 2 choose a spot");
 				row = sc.nextInt() - 1;
 				col = sc.nextInt() - 1;
 				emptySpace = openSpace(ticTacToe, row, col);
-				if (emptySpace == false)
+				while (emptySpace == false)
 				{
-					System.out.println("Choose a new spot player 1");
+					System.out.println("Choose a new spot player 2");
+					row = sc.nextInt() - 1;
+					col = sc.nextInt() - 1;
+					emptySpace = openSpace(ticTacToe, row, col);
 				}
-				else
+				ticTacToe [row][col] =  player2;
+				win = checkWin(ticTacToe, row, col);
+				if (win == true)
 				{
-
+					System.out.println("PLAYER TWO WINS!!!!!!");
+					break;
+				}
+				while (i == 8 && win == false)
+				{
+					System.out.println("TIE GAME!");
+					break;
 				}
 			}
 		}
@@ -122,9 +132,9 @@ public class TicTacToe {
 			counter2 = 1;
 			for (int j = 0; j < toe.length; j++)
 			{
-				if (toe[i][j] == player )
+				if (toe[j][i] == player )
 				{
-					if (toe [i][j] == toe [i+1][j])
+					if (toe [j][i] == toe [j+1][i])
 					{
 						counter2++;
 						if (counter2 == 3)
@@ -169,16 +179,15 @@ public class TicTacToe {
 			}
 			return win;
 		}
+		//for diagonal to the left
 		for (int i = toe.length - 1; i >= 0;)
 		{
 			counter4 = 1;
-			for (int j = toe.length- 1; j >= 0; j--, i--)
+			for (int j = 0; j < toe.length; j++, i--)
 			{
-				//checks for player one input
-				if (toe [i][j] == 'X')
+				if (toe [i][j] == player)
 				{
-					//compares spot below to each other
-					if (toe [i][j] == toe [i-1][j-1])
+					if(toe [i][j] == toe [i-1][j+1])
 					{
 						counter4++;
 						if (counter4 == 3)
@@ -188,13 +197,8 @@ public class TicTacToe {
 						}
 					}
 				}
-				else 
-				{
-					j = toe.length;
-				}
-
 			}
-			
+			break;
 		}
 		return win;
 	}
