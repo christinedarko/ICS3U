@@ -44,56 +44,58 @@ public class TicTacToe {
 		Thread.sleep(2000);
 		System.out.println("Press enter to begin");
 		String space = sc.nextLine();
-		
+
 		int row = 0;
 		int col = 0;
-		
+
 		for (int i = 0; i < 9; i++)
 		{
 			System.out.println("Player 1 choose a spot");
 			row = sc.nextInt() - 1;
 			col = sc.nextInt() - 1;
 			boolean emptySpace = openSpace(ticTacToe, row, col);
-			if (emptySpace == false)
+			while (emptySpace == false)
 			{
 				System.out.println("That spot's already filled");
-			}
-			else
-			{
-				ticTacToe [row][col] =  player1;
-				boolean win = checkWin(ticTacToe, row, col);
-				if (win == true)
-				{
-					System.out.println("PLAYER ONE WINS!!!!!!");
-					break;
-				}
-				System.out.println("Player 2 choose a spot");
+				System.out.println("Choose a new spot");
 				row = sc.nextInt() - 1;
 				col = sc.nextInt() - 1;
 				emptySpace = openSpace(ticTacToe, row, col);
-				while (emptySpace == false)
-				{
-					System.out.println("Choose a new spot player 2");
-					row = sc.nextInt() - 1;
-					col = sc.nextInt() - 1;
-					emptySpace = openSpace(ticTacToe, row, col);
-				}
-				ticTacToe [row][col] =  player2;
-				win = checkWin(ticTacToe, row, col);
-				if (win == true)
-				{
-					System.out.println("PLAYER TWO WINS!!!!!!");
-					break;
-				}
-				while (i == 8 && win == false)
-				{
-					System.out.println("TIE GAME!");
-					break;
-				}
+			}
+			ticTacToe [row][col] =  player1;
+			boolean win = checkWin(ticTacToe, row, col);
+			if (win == true)
+			{
+				System.out.println("PLAYER ONE WINS!!!!!!");
+				break;
+			}
+			System.out.println("Player 2 choose a spot");
+			row = sc.nextInt() - 1;
+			col = sc.nextInt() - 1;
+			emptySpace = openSpace(ticTacToe, row, col);
+			while (emptySpace == false)
+			{
+				System.out.println("That spot's already filled");
+				System.out.println("Choose a new spot");
+				row = sc.nextInt() - 1;
+				col = sc.nextInt() - 1;
+				emptySpace = openSpace(ticTacToe, row, col);
+			}
+			ticTacToe [row][col] =  player2;
+			win = checkWin(ticTacToe, row, col);
+			if (win == true)
+			{
+				System.out.println("PLAYER TWO WINS!!!!!!");
+				break;
+			}
+			while (i == 8 && win == false)
+			{
+				System.out.println("TIE GAME!");
+				break;
 			}
 		}
 	}
-	
+
 	public static boolean checkWin (char [][] toe, int row, int col)
 	{
 		int counter1 = 1;
@@ -108,10 +110,10 @@ public class TicTacToe {
 			counter1 = 1;
 			for (int j = 0; j < toe.length- 1; j++)
 			{
-				//checks for player one input
+				//checks for player input
 				if (toe [i][j] == player)
 				{
-					//compares spot below to each other
+					//compares two spots to each other
 					if (toe [i][j] == toe [i][j+1])
 					{
 						counter1++;
@@ -148,7 +150,7 @@ public class TicTacToe {
 				{
 					j = toe.length;
 				}
-					
+
 			}
 		}
 		// for diagonal to right
@@ -180,14 +182,14 @@ public class TicTacToe {
 			return win;
 		}
 		//for diagonal to the left
-		for (int i = toe.length - 1; i >= 0;)
+		for (int i = 2; i >= 0;)
 		{
 			counter4 = 1;
 			for (int j = 0; j < toe.length; j++, i--)
 			{
-				if (toe [i][j] == player)
+				if (toe [j][i] == player)
 				{
-					if(toe [i][j] == toe [i-1][j+1])
+					if(toe [j][i] == toe [j+1][i-1])
 					{
 						counter4++;
 						if (counter4 == 3)
@@ -197,12 +199,15 @@ public class TicTacToe {
 						}
 					}
 				}
+				else
+				{
+					break;
+				}
 			}
-			break;
 		}
 		return win;
 	}
-	
+
 	public static boolean openSpace (char [][] toe, int row, int col)
 	{
 		boolean answer = false;
