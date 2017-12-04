@@ -47,12 +47,14 @@ public class TicTacToe {
 
 		int row = 0;
 		int col = 0;
-
+		
+		//gives each player a turn
 		for (int i = 0; i < 9; i++)
 		{
 			System.out.println("Player 1 choose a spot");
 			row = sc.nextInt() - 1;
 			col = sc.nextInt() - 1;
+			// checks for an empty space
 			boolean emptySpace = openSpace(ticTacToe, row, col);
 			while (emptySpace == false)
 			{
@@ -63,6 +65,7 @@ public class TicTacToe {
 				emptySpace = openSpace(ticTacToe, row, col);
 			}
 			ticTacToe [row][col] =  player1;
+			// checks for a win
 			boolean win = checkWin(ticTacToe, row, col);
 			if (win == true)
 			{
@@ -72,6 +75,7 @@ public class TicTacToe {
 			System.out.println("Player 2 choose a spot");
 			row = sc.nextInt() - 1;
 			col = sc.nextInt() - 1;
+			//checks for empty space
 			emptySpace = openSpace(ticTacToe, row, col);
 			while (emptySpace == false)
 			{
@@ -82,12 +86,14 @@ public class TicTacToe {
 				emptySpace = openSpace(ticTacToe, row, col);
 			}
 			ticTacToe [row][col] =  player2;
+			//checks for win
 			win = checkWin(ticTacToe, row, col);
 			if (win == true)
 			{
 				System.out.println("PLAYER TWO WINS!!!!!!");
 				break;
 			}
+			//checks at last possible round if a player won
 			while (i == 8 && win == false)
 			{
 				System.out.println("TIE GAME!");
@@ -95,7 +101,18 @@ public class TicTacToe {
 			}
 		}
 	}
-
+	
+	/**
+	 * This method checks for a win in tic tac toe
+	 * @param toe
+	 * 				reference to the tic tac toe table used in the main
+	 * @param row
+	 * 				index value of the row where the player decided to place their character 
+	 * @param col
+	 * 				index value of the the column in which the player decided to place their character
+	 * @return
+	 * 				a boolean variable that indicates if the player won
+	 */
 	public static boolean checkWin (char [][] toe, int row, int col)
 	{
 		int counter1 = 1;
@@ -134,8 +151,10 @@ public class TicTacToe {
 			counter2 = 1;
 			for (int j = 0; j < toe.length; j++)
 			{
+				//checks for player input
 				if (toe[j][i] == player )
 				{
+					//compares two spots to each other
 					if (toe [j][i] == toe [j+1][i])
 					{
 						counter2++;
@@ -159,10 +178,10 @@ public class TicTacToe {
 			counter3 = 1;
 			for (int j = 0; j < toe.length- 1; j++, i++)
 			{
-				//checks for player one input
+				//checks for player input
 				if (toe [i][j] == player)
 				{
-					//compares spot below to each other
+					//compares two spots to each other
 					if (toe [i][j] == toe [i+1][j+1])
 					{
 						counter3++;
@@ -187,8 +206,10 @@ public class TicTacToe {
 			counter4 = 1;
 			for (int j = 0; j < toe.length; j++, i--)
 			{
+				//checks player input
 				if (toe [j][i] == player)
 				{
+					//compares two spots to each other
 					if(toe [j][i] == toe [j+1][i-1])
 					{
 						counter4++;
@@ -208,6 +229,17 @@ public class TicTacToe {
 		return win;
 	}
 
+	/**
+	 * This method checks for unoccupied spaces in the tic tac toe table
+	 * @param toe
+	 * 				reference to the tic tac toe table used in the main
+	 * @param row
+	 * 				index value of the row where the player decided to place their character
+	 * @param col
+	 * 				index value of the the column in which the player decided to place their character
+	 * @return
+	 * 				a boolean variable that indicates if the requested index is empty
+	 */
 	public static boolean openSpace (char [][] toe, int row, int col)
 	{
 		boolean answer = false;
