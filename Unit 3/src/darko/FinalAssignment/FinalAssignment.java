@@ -29,6 +29,14 @@ public class FinalAssignment {
 			//repeat loop
 		}
 	}
+	public static void rotate (EV3UltrasonicSensor ultrasonic) {
+		EV3LargeRegulatedMotor rightMotor = new EV3LargeRegulatedMotor(MotorPort.C);
+		EV3LargeRegulatedMotor leftMotor = new EV3LargeRegulatedMotor(MotorPort.B);
+		rightMotor.setSpeed(700);
+		rightMotor.rotate(360);
+		Delay.msDelay(1000);
+		rightMotor.stop();
+	}
 	public static boolean clearPath(EV3UltrasonicSensor ultrasonic) {
 		boolean clearPath = false;
 		float[] distances = new float[1];
@@ -37,9 +45,11 @@ public class FinalAssignment {
 			ultrasonic.fetchSample(distances, 0);
 			if (distances[0] >= 2.5){
 				clearPath = true;
+				i = 4;
 			}
 			else {
-				ri
+				rotate(ultrasonic);
+				i=-1;
 			}
 			Delay.msDelay(300);
 		}

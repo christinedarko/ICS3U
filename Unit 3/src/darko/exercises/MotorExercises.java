@@ -15,10 +15,15 @@ public class MotorExercises {
 	public static void main(String[] args) throws InterruptedException  {
 		// TODO Auto-generated method stub
 		EV3LargeRegulatedMotor lever = new EV3LargeRegulatedMotor (MotorPort.A);
-		EV3LargeRegulatedMotor right = new EV3LargeRegulatedMotor (MotorPort.B);
-		EV3LargeRegulatedMotor left = new EV3LargeRegulatedMotor (MotorPort.C);
-		square(lever, right, left);
-		Button.DOWN.waitForPressAndRelease();
+		EV3LargeRegulatedMotor right = new EV3LargeRegulatedMotor (MotorPort.C);
+		EV3LargeRegulatedMotor left = new EV3LargeRegulatedMotor (MotorPort.B);
+		
+//		square(lever, right, left);
+//		Button.DOWN.waitForPressAndRelease();
+		right.setSpeed(700);
+		right.rotate(360);
+		Delay.msDelay(1000);
+		right.stop();
 		
 	}
 	public static void square(EV3LargeRegulatedMotor lever, EV3LargeRegulatedMotor right, EV3LargeRegulatedMotor left) throws InterruptedException
