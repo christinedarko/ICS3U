@@ -31,10 +31,11 @@ public class FinalAssignment {
 		dangers.add("OH NO! There's a dragon in our way!");
 		dangers.add("AHHH VAMPIRE BATS!");
 		dangers.add(""); // decide if you want more than two 
+		
 		boolean done = false;
-		double clue = 415.305;
-		double danger = 164.814;
-		double found = 523.251;
+		double clueTone = 415.305;
+		double dangerTone = 164.814;
+		double foundTone = 523.251;
 		//Instructions
 		for(int i = 0; i < 2; i++) {
 			System.out.println("WELCOME AGENT!");
@@ -56,19 +57,19 @@ public class FinalAssignment {
 			System.out.println("Just a couple things before we start. When I've found a clue, this sound will play...");
 			Button.waitForAnyPress();
 			System.out.print("\f");
-			Sound.playTone((int)clue, 600);
+			Sound.playTone((int)clueTone, 600);
 			
 			System.out.println("When there is a danger warning, this sound will play...");
 			Button.waitForAnyPress();
 			Delay.msDelay(1000);
 			System.out.print("\f");
-			Sound.playTone((int)danger, 600);
+			Sound.playTone((int)dangerTone, 600);
 			
 			System.out.println(" When I've found the missing family, this sound will play...");
 			Button.waitForAnyPress();
 			Delay.msDelay(1000);
 			System.out.print("\f");
-			Sound.playTone((int)found, 600);
+			Sound.playTone((int)foundTone, 600);
 			
 			System.out.println("If you'd like to continue with the game please wait");
 			Button.waitForAnyEvent(15000);
@@ -87,8 +88,15 @@ public class FinalAssignment {
 		
 		while (!done == true) {
 			move(rightMotor, leftMotor, ultrasonic);
-			clueCheck(colour,rightMotor, leftMotor);
-			dangerCheck(colour, rightMotor, leftMotor);
+			int clue = clueCheck(colour,rightMotor, leftMotor, clues);
+			if (clue != -1) {
+				infoGathered.add(clues.remove(clue));
+				Delay.msDelay(4000);
+			}
+			int danger = dangerCheck(colour, rightMotor, leftMotor, dangers);
+			if (danger != -1) {
+				infoGathered.add(clues.remove(danger));
+			}
 			done = foundCheck(colour, rightMotor, leftMotor);
 			Delay.msDelay(100);
 		}
@@ -137,31 +145,34 @@ public class FinalAssignment {
 		}
 	}
 	
-	public static void clueCheck (EV3ColorSensor colour, EV3LargeRegulatedMotor rightMotor,EV3LargeRegulatedMotor leftMotor) {
+	public static int clueCheck (EV3ColorSensor colour, EV3LargeRegulatedMotor rightMotor,EV3LargeRegulatedMotor leftMotor, ArrayList <String> clues)  {
 		float[] colourSample = new float[1];
+		int random = -1;
 		colour.getColorIDMode().fetchSample(colourSample, 0);
 		if (colourSample[0] == Color.YELLOW) {
 			rightMotor.stop();
 			leftMotor.stop();
 			System.out.println("YAY! You found a clue!");
-			
-			//Print out clue instructions
 			Delay.msDelay(7000);
+			//Print out clue message
+			random = (int) (Math.random() * clues.size());
 		}
-	
+		return random;
 	}
 	
-	public static void dangerCheck (EV3ColorSensor colour, EV3LargeRegulatedMotor rightMotor,EV3LargeRegulatedMotor leftMotor) {
+	public static int dangerCheck (EV3ColorSensor colour, EV3LargeRegulatedMotor rightMotor,EV3LargeRegulatedMotor leftMotor, ArrayList <String> dangers) {
 		float[] colourSample = new float[1];
+		int random = -1;
 		colour.getColorIDMode().fetchSample(colourSample, 0);
 		if (colourSample[0] == Color.RED) {
 			rightMotor.stop();
 			leftMotor.stop();
 			System.out.println("OH NO! Stranger Danger!");
-			//Print out danger instruction
 			Delay.msDelay(7000);
+			//Prints out danger message
+			random = (int) (Math.random() * dangers.size());
 		}
-
+		return random;
 	}
 	public static boolean foundCheck (EV3ColorSensor colour, EV3LargeRegulatedMotor rightMotor,EV3LargeRegulatedMotor leftMotor) {
 		boolean found = false;
