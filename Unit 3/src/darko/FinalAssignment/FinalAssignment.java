@@ -22,7 +22,7 @@ public class FinalAssignment {
 		
 		ArrayList<String> infoGathered = new ArrayList <String>();
 		
-		ArrayList<String> clues = new ArrayList <String>();
+		ArrayList<String> clues = new ArrayList <String>(3);
 		clues.add("WOW! It seems like a hat that might of belonged to one of the missing family members. Seems like we're getting somewhere");
 		clues.add("I think I've found a hair sample. Reading the DNA...");
 		clues.add("Do you hear that noise? I think it's coming from over there!");
@@ -90,24 +90,31 @@ public class FinalAssignment {
 			move(rightMotor, leftMotor, ultrasonic);
 			int clue = clueCheck(colour,rightMotor, leftMotor, clues);
 			if (clue != -1) {
+				Sound.playTone((int)clueTone, 600);
+				System.out.println(clues.get(clue));
 				infoGathered.add(clues.remove(clue));
 				Delay.msDelay(4000);
 			}
 			int danger = dangerCheck(colour, rightMotor, leftMotor, dangers);
 			if (danger != -1) {
-				infoGathered.add(clues.remove(danger));
+				Sound.playTone((int)dangerTone, 600);
+				System.out.println(dangers.get(danger));
+				infoGathered.add(dangers.remove(danger));
 			}
 			done = foundCheck(colour, rightMotor, leftMotor);
+			if (done == true) {
+				Sound.playTone((int)foundTone, 600);
+			}
 			Delay.msDelay(100);
 		}
 		System.out.println("Thanks for playing!");
 		Delay.msDelay(10000);
 	}
 	public static void rotate (EV3UltrasonicSensor ultrasonic, EV3LargeRegulatedMotor rightMotor, EV3LargeRegulatedMotor leftMotor) {
-		rightMotor.setSpeed(700);
-		rightMotor.rotate(360);
+		leftMotor.setSpeed(700);
+		leftMotor.rotate(360);
 		Delay.msDelay(1000);
-		rightMotor.stop();
+		leftMotor.stop();
 	}
 	public static boolean clearPath(EV3UltrasonicSensor ultrasonic, EV3LargeRegulatedMotor rightMotor, EV3LargeRegulatedMotor leftMotor) {
 		boolean clearPath = false;
@@ -116,7 +123,7 @@ public class FinalAssignment {
 		while(!done)
 		{
 			ultrasonic.getDistanceMode().fetchSample(distances, 0);
-			if (distances[0] >= 0.1){
+			if (distances[0] >= 0.2){
 				clearPath = true;
 				done = true;
 			}
@@ -167,7 +174,6 @@ public class FinalAssignment {
 		if (colourSample[0] == Color.RED) {
 			rightMotor.stop();
 			leftMotor.stop();
-			System.out.println("OH NO! Stranger Danger!");
 			Delay.msDelay(7000);
 			//Prints out danger message
 			random = (int) (Math.random() * dangers.size());

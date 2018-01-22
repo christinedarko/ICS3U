@@ -21,9 +21,9 @@ public class MotorExercises {
 //		square(lever, right, left);
 //		Button.DOWN.waitForPressAndRelease();
 		right.setSpeed(700);
-		right.rotate(360);
+		left.rotate(360);
 		Delay.msDelay(1000);
-		right.stop();
+		left.stop();
 		
 	}
 	public static void square(EV3LargeRegulatedMotor lever, EV3LargeRegulatedMotor right, EV3LargeRegulatedMotor left) throws InterruptedException
