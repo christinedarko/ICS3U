@@ -1,7 +1,12 @@
 package darko.FinalAssignment;
-
+/**
+ * Final Assignment
+ * January 23, 2017
+ * @author Christine Darko
+ * This program is a game that executes to a leJOS EV3 Mindstorms robot. The robot is an FBI agent searching for a missing family.
+ * There are a series of methods that complete different jobs to help Agent leJOS find the missing family. 
+ */
 import java.util.ArrayList;
-
 import lejos.hardware.Button;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.port.MotorPort;
@@ -11,6 +16,7 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
 import lejos.robotics.Color;
 import lejos.utility.Delay;
 import lejos.hardware.Sound;
+import lejos.hardware.lcd.LCD;
 
 public class FinalAssignment {
 	
@@ -30,59 +36,50 @@ public class FinalAssignment {
 		ArrayList<String> dangers = new ArrayList <String>();
 		dangers.add("OH NO! There's a dragon in our way!");
 		dangers.add("AHHH VAMPIRE BATS!");
-		dangers.add(""); // decide if you want more than two 
 		
 		boolean done = false;
 		double clueTone = 415.305;
 		double dangerTone = 164.814;
 		double foundTone = 523.251;
+		
 		//Instructions
-		for(int i = 0; i < 2; i++) {
 			System.out.println("WELCOME AGENT!");
 			Button.waitForAnyPress();
-			System.out.print("\f");
+			LCD.clear();
 			
 			System.out.println("I AM AGENT leJOS. I WORK FOR THE FBI");
 			Button.waitForAnyPress();
-			System.out.println("\f");
+			LCD.clear();
 			
 			System.out.println("Our mission today is to find a family who has gone missing.");
 			Button.waitForAnyPress();
-			System.out.print("\f");
+			LCD.clear();
 			
 			System.out.println("They need our help to get home safely. Come along with me as I search for the missing family");
 			Button.waitForAnyPress();
-			System.out.print("\f");
+			LCD.clear();
 			
 			System.out.println("Just a couple things before we start. When I've found a clue, this sound will play...");
 			Button.waitForAnyPress();
-			System.out.print("\f");
+			LCD.clear();
 			Sound.playTone((int)clueTone, 600);
 			
 			System.out.println("When there is a danger warning, this sound will play...");
 			Button.waitForAnyPress();
 			Delay.msDelay(1000);
-			System.out.print("\f");
+			LCD.clear();
 			Sound.playTone((int)dangerTone, 600);
 			
 			System.out.println(" When I've found the missing family, this sound will play...");
 			Button.waitForAnyPress();
 			Delay.msDelay(1000);
-			System.out.print("\f");
+			LCD.clear();
 			Sound.playTone((int)foundTone, 600);
 			
-			System.out.println("If you'd like to continue with the game please wait");
+			System.out.println("Please wait wait for the game to begin");
 			Button.waitForAnyEvent(15000);
 			Delay.msDelay(5000);
-			if (Button.readButtons() == 0)
-			{
-				i = 2;
-			}
-			else
-			{
-				i = -1;
-			}
-		}
+			
 		System.out.println("Press the down key to begin the search");
 		Button.DOWN.waitForPress();
 		
@@ -107,15 +104,38 @@ public class FinalAssignment {
 			}
 			Delay.msDelay(100);
 		}
+		LCD.clear();
 		System.out.println("Thanks for playing!");
 		Delay.msDelay(10000);
 	}
+	/**
+	 * This method rotates the robot whenever it hits a blockade
+	 * @param ultrasonic 
+	 * 					The sensor that checks for a clear path ahead
+	 * @param rightMotor 
+	 * 					The right wheel of the robot
+	 * @param leftMotor 
+	 * 					The left wheel of the robot
+	 */
 	public static void rotate (EV3UltrasonicSensor ultrasonic, EV3LargeRegulatedMotor rightMotor, EV3LargeRegulatedMotor leftMotor) {
 		leftMotor.setSpeed(700);
-		leftMotor.rotate(360);
-		Delay.msDelay(1000);
-		leftMotor.stop();
+		rightMotor.setSpeed(700);
+		leftMotor.rotate(360, true); //changed one motor rotate to both motors rotating
+		rightMotor.rotate(360,true);
+		Delay.msDelay(500); //changed the delay from 1000 to 500
+		leftMotor.stop(true);
 	}
+	/**
+	 * This method checks for a clear path a certain distance away from the robot
+	 * @param ultrasonic
+						The sensor that checks for a clear path ahead
+	 * @param rightMotor 
+	 * 					The right wheel of the robot
+	 * @param leftMotor 
+	 * 					The left wheel of the robot
+	 * @return
+	 * 			boolean clearPath  - true for clear, false for not clear
+	 */
 	public static boolean clearPath(EV3UltrasonicSensor ultrasonic, EV3LargeRegulatedMotor rightMotor, EV3LargeRegulatedMotor leftMotor) {
 		boolean clearPath = false;
 		float[] distances = new float[1];
@@ -123,7 +143,7 @@ public class FinalAssignment {
 		while(!done)
 		{
 			ultrasonic.getDistanceMode().fetchSample(distances, 0);
-			if (distances[0] >= 0.2){
+			if (distances[0] > 0.2){
 				clearPath = true;
 				done = true;
 			}
@@ -134,10 +154,18 @@ public class FinalAssignment {
 		}
 		return clearPath;
 	}
-	
+	/**
+	 * This method controls the movement of the robot throughout the search
+	 * @param rightMotor
+	 * 					right wheel of the robot
+	 * @param leftMotor
+	 * 					left wheel of the robot
+	 * @param ultrasonic
+	 * 					The sensor that checks for a clear pathway
+	 */
 	public static void move(EV3LargeRegulatedMotor rightMotor,EV3LargeRegulatedMotor leftMotor,EV3UltrasonicSensor ultrasonic) {
-		rightMotor.setSpeed(360);
-		leftMotor.setSpeed(360);
+		rightMotor.setSpeed(300);
+		leftMotor.setSpeed(300);
 		rightMotor.forward();
 		leftMotor.forward();
 		boolean clearPath = clearPath(ultrasonic, rightMotor, leftMotor); 
@@ -151,6 +179,14 @@ public class FinalAssignment {
 			leftMotor.forward();
 		}
 	}
+	/**
+	 * 
+	 * @param colour
+	 * @param rightMotor
+	 * @param leftMotor
+	 * @param clues
+	 * @return
+	 */
 	
 	public static int clueCheck (EV3ColorSensor colour, EV3LargeRegulatedMotor rightMotor,EV3LargeRegulatedMotor leftMotor, ArrayList <String> clues)  {
 		float[] colourSample = new float[1];
@@ -161,7 +197,6 @@ public class FinalAssignment {
 			leftMotor.stop();
 			System.out.println("YAY! You found a clue!");
 			Delay.msDelay(7000);
-			//Print out clue message
 			random = (int) (Math.random() * clues.size());
 		}
 		return random;
@@ -175,7 +210,6 @@ public class FinalAssignment {
 			rightMotor.stop();
 			leftMotor.stop();
 			Delay.msDelay(7000);
-			//Prints out danger message
 			random = (int) (Math.random() * dangers.size());
 		}
 		return random;
@@ -187,8 +221,7 @@ public class FinalAssignment {
 		if (colourSample[0] == Color.GREEN) {
 			rightMotor.stop();
 			leftMotor.stop();
-			System.out.println("YAY! You found the missing persons!");
-			//Print out found missing persons instructions
+			System.out.println("YAY! You found the missing family!");
 			found = true;
 		}
 		else {
